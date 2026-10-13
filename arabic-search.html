@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة الموارد المجانية | كتب، ألعاب، برامج، فيجن ومزيد</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;700;900&family=Tajawal:wght@400;500;700;800&family=Cairo:wght@400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script type="module">
+        import Lenis from 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/+esm';
+        window.Lenis = Lenis;
+    </script>
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="animated-bg" id="animatedBg"></div>
+    
+    <!-- Header -->
+    <header class="header-main">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon gsap-reveal-scale">📚</span>
+                <div>
+                    <h1 class="logo-text gradient-text">مكتبة الموارد المجانية</h1>
+                    <p class="logo-subtitle">اكتشف كتبًا وألعابًا وبرامجًا وموارد تعليمية مجانية</p>
+                </div>
+            </div>
+            <div class="search-section-header">
+                <form class="search-form-header" id="searchFormHeader" role="search">
+                    <div class="search-input-wrapper-lg">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input
+                            type="text"
+                            class="search-input-lg"
+                            id="searchInputHeader"
+                            placeholder="ابحث عن كتب، ألعاب، برامج، فيجن، تعليم..."
+                            autocomplete="off"
+                            aria-label="حقل البحث الرئيسي"
+                            lang="ar"
+                        >
+                        <button class="mic-btn-lg magnetic-btn" type="button" aria-label="البحث الصوتي" onclick="toggleVoiceSearch()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mic-icon">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="search-btn-lg shimmer-btn glow-pulse magnetic-btn" type="submit">
+                        بحث
+                    </button>
+                </form>
+                <div class="search-tabs">
+                    <button class="search-tab active" data-tab="all" onclick="switchSearchTab('all')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        الكل
+                    </button>
+                    <button class="search-tab" data-tab="books" onclick="switchSearchTab('books')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        الكتب
+                    </button>
+                    <button class="search-tab" data-tab="games" onclick="switchSearchTab('games')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                            <polyline points="2 17 12 22 22 17"/>
+                            <polyline points="2 12 12 17 22 12"/>
+                        </svg>
+                        الألعاب
+                    </button>
+                    <button class="search-tab" data-tab="software" onclick="switchSearchTab('software')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                        البرامج
+                    </button>
+                    <button class="search-tab" data-tab="video" onclick="switchSearchTab('video')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="23 7 16 12 23 17 23 7"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                        الفيديوهات
+                    </button>
+                    <button class="search-tab" data-tab="education" onclick="switchSearchTab('education')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+                        </svg>
+                        تعليم
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Categories Grid -->
+        <section class="categories-section">
+            <div class="section-header">
+                <h2>التصنيفات الرئيسية</h2>
+                <p>تصفح حسب الموضوع واختر ما يثير اهتمامك</p>
+            </div>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories will be populated by JS -->
+            </div>
+        </section>
+
+        <!-- Filters Bar -->
+        <section class="filters-section" id="filtersSection" hidden>
+            <div class="filters-content">
+                <div class="filters-left">
+                    <h3 id="searchResultsTitle">نتائج البحث</h3>
+                    <div class="result-meta">
+                        <span id="resultsCount"></span>
+                        <span class="separator">|</span>
+                        <span id="resultsTime"></span>
+                    </div>
+                </div>
+                <div class="filters-right">
+                    <div class="filter-chips" id="filterChips">
+                        <!-- Filter chips will be populated -->
+                    </div>
+                    <button class="clear-filters-btn magnetic-btn" onclick="clearFilters()">
+                        إخلاء الفلاتر
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div class="loading" id="loading" hidden>
+            <div class="loading-spinner"></div>
+            <p>جاري البحث...</p>
+        </div>
+
+        <!-- Results Grid -->
+        <section class="results-section" id="resultsSection" hidden>
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be populated by JS -->
+            </div>
+        </section>
+
+        <!-- Live Web Results (Exa) -->
+        <section class="live-results-section" id="liveResultsSection" hidden>
+            <div class="live-results-header">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    نتائج مباشرة من الإنترنت
+                </h3>
+                <span class="live-results-badge">مدعوم بـ Exa</span>
+            </div>
+            <p class="live-results-status" id="liveResultsStatus" hidden></p>
+            <div class="results-grid" id="liveResultsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- No Results -->
+        <div class="no-results" id="noResults" hidden>
+            <div class="no-results-content">
+                <svg class="no-results-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <h3 class="no-results-title">لم يتم العثور على نتائج</h3>
+                <p class="no-results-text">لم نجد موارد تطابق بحثك. جرب كلمات مفتاحية مختلفة أو تصفح التصنيفات أعلاه.</p>
+                <div class="no-results-actions">
+                    <button class="retry-btn magnetic-btn" onclick="document.getElementById('searchInputHeader').focus()">
+                        تجربة بحث آخر
+                    </button>
+                    <button class="browse-categories-btn magnetic-btn" onclick="scrollToCategories()">
+                        تصفح التصنيفات
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination" hidden>
+            <button class="page-btn" id="prevPage" onclick="changePage(-1)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                السابق
+            </button>
+            <div class="page-numbers" id="pageNumbers"></div>
+            <button class="page-btn" id="nextPage" onclick="changePage(1)">
+                التالي
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>📚 عن المكتبة</h3>
+                <p>مكتبة شاملة للموارد المجانية تم ترتيبها بعناية لمساعدتك في العثور على الكتب والألعاب والبرامج والموارد التعليمية وغيرها من الموارد المجانية على الإنترنت.</p>
+                <p class="footer-disclaimer">⚠️ نوصي دائمًا بالتحقق من مصادر التحميل والتعامل بحذر مع مواقع التحميل غير المعروفة.</p>
+            </div>
+            <div class="footer-section">
+                <h3>🗂️ التصنيفات</h3>
+                <ul class="footer-categories" id="footerCategories">
+                    <!-- Populated by JS -->
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🔥 الوسوم الشائعة</h3>
+                <div class="footer-tags" id="footerTags">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>📞 تواصل معنا</h3>
+                <ul class="footer-links">
+                    <li><a href="#">تقديم مورد جديد</a></li>
+                    <li><a href="#">الإبلاغ عن رابط ميت</a></li>
+                    <li><a href="#">سؤال ورد</a></li>
+                    <li><a href="#">تواصل مع المطور</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 مكتبة الموارد المجانية. موقع تعريفي فقط - لا نستضيف الملفات بشكل مباشر.</p>
+            <p class="footer-legal">تأكد دائمًا من مصدر التحميل واستخدم برنامج مكافحة الفيروسات</p>
+        </div>
+    </footer>
+
+    <script src="resources.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
